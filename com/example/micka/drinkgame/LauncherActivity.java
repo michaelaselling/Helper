@@ -1,13 +1,37 @@
+package com.example.micka.drinkgame;
+
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.IntDef;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Spinner;
 
-import com.example.micka.drinkgame.R;
 
-/**
- * Helper class to convert random Strings to ints by using defined constants.
- */
-public class RandomStrings extends AppCompatActivity {
+public class LauncherActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_launcher);
+
+        Button drinkButton = findViewById(R.id.power_drink_button);
+        drinkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startPowerDrinkActivity();
+            }
+        });
+    }
+
+    /**
+     * Starts {@link PowerDrinkActivity}.
+     */
+    void startPowerDrinkActivity() {
+        Intent i = new Intent(LauncherActivity.this, PowerDrinkActivity.class);
+        startActivity(i);
+    }
 
     /**
      * Public interface.
@@ -20,7 +44,7 @@ public class RandomStrings extends AppCompatActivity {
     }
 
     /**
-     * Helper method to convert random Strings to ints.
+     * Helper method to convert random strings to ints.
      *
      * @return The mapped int.
      */
@@ -34,7 +58,7 @@ public class RandomStrings extends AppCompatActivity {
             case "First random" :
                 convertedInt = Constants.CONSTANT_FIRST;
                 break;
-            case "Second random" :
+            case "Seconds random" :
                 convertedInt = Constants.CONSTANT_SECOND;
                 break;
             case "Third random" :
@@ -44,5 +68,3 @@ public class RandomStrings extends AppCompatActivity {
         return convertedInt;
     }
 }
-
-
